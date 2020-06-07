@@ -47,5 +47,7 @@ urlpatterns = [
     path('cisco/edit/<int:pk>/', views.edit, name='edit'),
     path('cisco/create/', views.create, name='create'),
     path('cisco/delete/<int:pk>/', views.delete, name='delete'),
-    path('resturl/', include('myapi.urls'))
+
+    # rest framework urls
+    path('api/cisco/', include(('myapi.urls', 'ciso_api'),namespace='api' ))
 ]
