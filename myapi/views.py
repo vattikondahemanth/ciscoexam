@@ -18,7 +18,7 @@ from rest_framework.authtoken.models import Token
 #     serializer_class = CiscoSerializer
 
 @api_view(['GET',])
-@permission_classes((permissions.AllowAny,))
+@permission_classes((permissions.IsAuthenticated,))
 def api_detail_cisco_view(request, sapid):
 	try:
 		cisco_obj = CiscoModel.objects.get(sapid=sapid)
@@ -31,7 +31,7 @@ def api_detail_cisco_view(request, sapid):
 
 
 @api_view(['PUT',])
-@permission_classes((permissions.AllowAny,))
+@permission_classes((permissions.IsAuthenticated,))
 def api_update_cisco_view(request, sapid):
 	try:
 		cisco_obj = CiscoModel.objects.get(sapid=sapid)
@@ -50,7 +50,7 @@ def api_update_cisco_view(request, sapid):
 
 
 @api_view(['DELETE',])
-@permission_classes((permissions.AllowAny,))
+@permission_classes((permissions.IsAuthenticated,))
 def api_delete_cisco_view(request, sapid):
 	try:
 		cisco_obj = CiscoModel.objects.get(sapid=sapid)
@@ -70,7 +70,7 @@ def api_delete_cisco_view(request, sapid):
 
 
 @api_view(['POST',])
-@permission_classes((permissions.AllowAny,))
+@permission_classes((permissions.IsAuthenticated,))
 def api_create_cisco_view(request):
 	if request.method == 'POST':
 		serializer = CiscoSerializer(data=request.data)
@@ -86,7 +86,7 @@ def api_create_cisco_view(request):
 
 
 @api_view(['POST', ])
-@permission_classes((permissions.AllowAny,))
+@permission_classes((permissions.IsAuthenticated,))
 def registration_view(request):
 
 	if request.method == 'POST':
