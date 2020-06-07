@@ -4,11 +4,12 @@ from django.contrib.auth.models import User
 
 from rest_framework import viewsets
 
-from .serializers import CiscoSerializer
+from .serializers import CiscoSerializer, RegistrationSerializer
 from crudapp.models import CiscoModel
 from rest_framework import status, authentication, permissions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.authtoken.models import Token
 
 
 
@@ -80,3 +81,25 @@ def api_create_cisco_view(request):
 			return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 		return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+
+
+
+@api_view(['POST', ])
+@permission_classes((permissions.AllowAny,))
+def registration_view(request):
+
+	if request.method == 'POST':
+		data = {}
+		serializer = RegistrationSerializer(data=request.data)
+		if serializer.is_valid():
+			user_obj =  serializer.save()
+			data['message'] =  'Registered successfully'
+			data['email'] = user_obj.email
+			data['username'] = user_obj.username
+			token = Token.objects.get(user=user_obj).key
+			data['token'] = token
+		else:
+			data = serializer.errors
+
+		return Response(data)

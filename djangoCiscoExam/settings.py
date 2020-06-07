@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'crudapp',
+    'myapi',
     'rest_framework',
     'rest_framework.authtoken'
 ]
@@ -61,7 +62,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+AUTH_USER_MODEL = 'auth.User'
 ROOT_URLCONF = 'djangoCiscoExam.urls'
 
 TEMPLATES = [
