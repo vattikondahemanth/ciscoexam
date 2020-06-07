@@ -9,6 +9,3 @@ class CiscoModel(models.Model):
     hostname = models.CharField(max_length=18, blank = True, null = True)
     loopback = models.CharField(max_length=18, blank = True, null = True)
     macaddress = models.CharField(max_length=18, blank = True, null = True)
-
-    def __str__(self):
-        return self.sapid
