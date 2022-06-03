@@ -36,7 +36,6 @@ router = routers.DefaultRouter()
 
 
 
-https://login.microsoftonline.com/Enter_the_Tenant_Name_Here
 router.register(r'users', UserViewSet)
 
 # Wire up our API using automatic URL routing.
